@@ -31,12 +31,20 @@ function generateMarkdown(data) {
   console.log("we got to generateMarkdown");
   const license = renderLicenseLink(data.license);
   const badge = renderLicenseBadge(data.license);
+
+  //this return contains all text and formatting for the README
   return `# ${data.title}
   ${badge}
   ## Description
   ${data.description}
   ## Table of Contents
-  ${data.contents}
+  [Installation](#installation)  
+  [Usage](#usage)  
+  [How to Contribute](#how-to-contribute)  
+  [Tests](#tests)  
+  [Credits](#credits)  
+  [License](#license)  
+  [Questions](#questions)  
   ## Installation
   ${data.installation}
   ## Usage

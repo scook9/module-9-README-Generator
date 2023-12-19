@@ -10,11 +10,6 @@ const questions = [
   { type: "input", message: "Project description?", name: "description" },
   {
     type: "input",
-    message: "Table of Contents?",
-    name: "contents",
-  },
-  {
-    type: "input",
     message: "Installation Instructions?",
     name: "installation",
   },
