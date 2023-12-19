@@ -2,19 +2,37 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+const markdown = require("./utils/generateMarkdown.js");
+
 // TODO: Create an array of questions for user input
 const questions = [
-  "Project title?",
-  "Project description?",
-  "Table of Contents? (Enter to skip)",
-  "Installation Instructions? (Enter to skip)",
-  "Usage Instructions?",
-  "Credits?",
-  "Badges?",
-  "Features?",
-  "How to contribute?",
-  "Tests?",
+  { type: "input", message: "Project title?", name: "title" },
+  { type: "input", message: "Project description?", name: "description" },
+  {
+    type: "input",
+    message: "Table of Contents?",
+    name: "contents",
+  },
+  {
+    type: "input",
+    message: "Installation Instructions?",
+    name: "installation",
+  },
+  { type: "input", message: "Usage Instructions?", name: "usage" },
+  { type: "input", message: "Credits?", name: "credits" },
+  { type: "input", message: "Badges?", name: "badges" },
+  { type: "input", message: "How to contribute?", name: "contribute" },
+  { type: "input", message: "Tests?", name: "tests" },
+  { type: "input", message: "License?", name: "license" },
 ];
+
+//function to prompt the user and store responses
+function userPrompt(questions) {
+  //response is an object with keys equal to the names in the questions array
+  inquirer
+    .prompt(questions)
+    .then((response) => writeToFile("README-Test.md", markdown(response)));
+}
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
@@ -25,7 +43,7 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 function init() {
-  writeToFile("README-Test.md", "also test");
+  userPrompt(questions);
 }
 
 // Function call to initialize app
