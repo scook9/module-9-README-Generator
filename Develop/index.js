@@ -20,10 +20,16 @@ const questions = [
   },
   { type: "input", message: "Usage Instructions?", name: "usage" },
   { type: "input", message: "Credits?", name: "credits" },
-  { type: "input", message: "Badges?", name: "badges" },
   { type: "input", message: "How to contribute?", name: "contribute" },
   { type: "input", message: "Tests?", name: "tests" },
-  { type: "input", message: "License?", name: "license" },
+  {
+    type: "list",
+    message: "License?",
+    choices: ["MIT", "IBM", "None"],
+    name: "license",
+  },
+  { type: "input", message: "GitHub username?", name: "gitHubURL" },
+  { type: "input", message: "Email address?", name: "email" },
 ];
 
 //function to prompt the user and store responses
@@ -31,7 +37,7 @@ function userPrompt(questions) {
   //response is an object with keys equal to the names in the questions array
   inquirer
     .prompt(questions)
-    .then((response) => writeToFile("README-Test.md", markdown(response)));
+    .then((response) => writeToFile("README.md", markdown(response)));
 }
 
 // TODO: Create a function to write README file
